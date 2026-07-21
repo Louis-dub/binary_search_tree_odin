@@ -1,5 +1,6 @@
 {
   "name": "binary_search_tree_odin",
+  "type": "module",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
