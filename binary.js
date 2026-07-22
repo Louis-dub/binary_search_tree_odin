@@ -36,6 +36,21 @@ class Tree {
         return node;
     }
 
+    includes(value) {
+        let list = [this.root];
+
+        while (list.length > 0) {
+            let curNode = list.shift();
+            if (curNode.value === value)
+                return true;
+            if (curNode.left)
+                list.push(curNode.left);
+            if (curNode.right)
+                list.push(curNode.right);
+        }
+        return false;
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,

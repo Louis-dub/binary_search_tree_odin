@@ -51,3 +51,11 @@ const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 test("Create of tree", () => {
     expect(tree.toObject()).toEqual(treeObject);
 });
+
+test("Includes return true", () => {
+    expect(tree.includes(8)).toBe(true);
+});
+
+test("Includes return false", () => {
+    expect(tree.includes(33)).toBe(false);
+});
