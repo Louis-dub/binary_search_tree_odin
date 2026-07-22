@@ -83,6 +83,38 @@ class Tree {
         }
     }
 
+    deleteItem(value) {
+        if (!this.root)
+            return;
+        if (this.root.value === value) {
+            this.root = null;
+            return;
+        }
+
+        let curNode = this.root;
+        while (curNode !== null) {
+            if (value < curNode.value) {
+                if (!curNode.left) {
+                    return;
+                } else if (curNode.left.value === value) {
+                    curNode.left = null;
+                    return;
+                } else {
+                    curNode = curNode.left;
+                }
+            } else {
+                if (!curNode.right) {
+                    return;
+                } else if (curNode.right.value === value) {
+                    curNode.right = null;
+                    return;
+                } else {
+                    curNode = curNode.right;
+                }
+            }
+        }
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,

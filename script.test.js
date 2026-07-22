@@ -79,3 +79,20 @@ test("Insert in an empty BST", () => {
         right: null,
     });
 });
+
+test("Delete one item", () => {
+    treeObject.right.left.right = null;
+    tree.deleteItem(5);
+    expect(tree.toObject()).toEqual(treeObject);
+});
+
+test("Delete several items", () => {
+    treeObject.right.right.right = null;
+    tree.deleteItem(67);
+    expect(tree.toObject()).toEqual(treeObject);
+});
+
+test("Delete non-exist item", () => {
+    tree.deleteItem(13);
+    expect(tree.toObject()).toEqual(treeObject);
+});
