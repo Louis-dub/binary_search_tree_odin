@@ -59,3 +59,23 @@ test("Includes return true", () => {
 test("Includes return false", () => {
     expect(tree.includes(33)).toBe(false);
 });
+
+test("Insert 25 in BST", () => {
+    treeObject.right.right.right.left = {
+        val: 25,
+        left: null,
+        right: null,
+    };
+    tree.insert(25);
+    expect(tree.toObject()).toEqual(treeObject);
+});
+
+test("Insert in an empty BST", () => {
+    const newTree = new Tree([]);
+    newTree.insert(7);
+    expect(newTree.toObject()).toEqual({
+        val: 7,
+        left: null,
+        right: null,
+    });
+});

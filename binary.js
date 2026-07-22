@@ -6,6 +6,9 @@ class Tree {
     }
 
     buildTree(array) {
+        if (array.length === 0) {
+            return null;
+        }
         const node = new Node(array[0]);
 
         array.forEach(val => {
@@ -49,6 +52,35 @@ class Tree {
                 list.push(curNode.right);
         }
         return false;
+    }
+
+    insert(value) {
+        if (!this.root) {
+            this.root = new Node(value);
+            return;
+        }
+        let currentNode = this.root;
+        let end = false;
+        
+        while(!end) {
+            if (value < currentNode.value) {
+                if (currentNode.left) {
+                    currentNode = currentNode.left;
+                } else {
+                    currentNode.left = new Node(value);
+                    end = true;
+                }
+            } else if (value == currentNode.value) {
+                end = true;
+            } else {
+                if (currentNode.right) {
+                    currentNode = currentNode.right;
+                } else {
+                    currentNode.right = new Node(value);
+                    end = true;
+                }
+            }
+        }
     }
 
     toObject() {
