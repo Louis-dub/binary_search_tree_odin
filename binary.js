@@ -134,6 +134,68 @@ class Tree {
         }
     }
 
+    preOrderForEach(callback) {
+        if (typeof callback !== "function")
+            throw new RangeError("A callback is required");
+
+        if (!this.root)
+            return;
+        let list = [this.root];
+
+        while (list.length > 0) {
+            let curNode = list[0];
+
+            callback(curNode.value);
+            if (curNode.left) {
+                list.splice(1, 0, curNode.left);
+                if (curNode.right)
+                    list.splice(2, 0, curNode.right);
+            } else {
+                if (curNode.right)
+                    list.splice(1, 0, curNode.right);
+            }
+            list.shift();
+        }
+    }
+
+    inOrderForEach(callback) {
+        if (typeof callback !== "function")
+            throw new RangeError("A callback is required");
+
+        if (!this.root)
+            return;
+        let list = [this.root];
+
+        while (list.length > 0) {
+            let curNode = list.shift();
+
+            callback(curNode.value);
+            if (curNode.left)
+                list.push(curNode.left);
+            if (curNode.right)
+                list.push(curNode.right);
+        }
+    }
+
+    postOrderForEach(callback) {
+        if (typeof callback !== "function")
+            throw new RangeError("A callback is required");
+
+        if (!this.root)
+            return;
+        let list = [this.root];
+
+        while (list.length > 0) {
+            let curNode = list.shift();
+
+            callback(curNode.value);
+            if (curNode.left)
+                list.push(curNode.left);
+            if (curNode.right)
+                list.push(curNode.right);
+        }
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,

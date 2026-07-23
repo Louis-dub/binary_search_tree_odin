@@ -109,3 +109,44 @@ test("levelOrderForEach passes correct values", () => {
 
     expect(visited).toEqual([1, 7, 4, 23, 3, 8, 9]);
 });
+
+test("preOrderForEach method with a non-callback parameter", () => {
+    expect(() => tree.preOrderForEach("callback")).toThrow(new RangeError("A callback is required"));
+});
+
+test("preOrderForEach passes correct values", () => {
+    tree.insert(5);
+    tree.insert(25);
+    const visited = [];
+    const mockCallback = jest.fn((value) => visited.push(value));
+
+    tree.preOrderForEach(mockCallback);
+
+    expect(visited).toEqual([1, 7, 4, 3, 5, 23, 8, 9, 25]);
+});
+
+test("inOrderForEach method with a non-callback parameter", () => {
+    expect(() => tree.inOrderForEach("callback")).toThrow(new RangeError("A callback is required"));
+});
+
+test("inOrderForEach passes correct values", () => {
+    const visited = [];
+    const mockCallback = jest.fn((value) => visited.push(value));
+
+    tree.inOrderForEach(mockCallback);
+
+    expect(visited).toEqual([1, 3, 4, 5, 7, 8, 9, 23, 25]);
+});
+
+test("postOrderForEach method with a non-callback parameter", () => {
+    expect(() => tree.postOrderForEach("callback")).toThrow(new RangeError("A callback is required"));
+});
+
+test("postOrderForEach passes correct values", () => {
+    const visited = [];
+    const mockCallback = jest.fn((value) => visited.push(value));
+
+    tree.postOrderForEach(mockCallback);
+
+    expect(visited).toEqual([3, 5, 4, 9, 8, 25, 23, 7, 1]);
+});
