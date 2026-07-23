@@ -115,6 +115,25 @@ class Tree {
         }
     }
 
+    levelOrderForEach(callback) {
+        if (typeof callback !== "function")
+            throw new RangeError("A callback is required");
+
+        if (!this.root)
+            return;
+        let list = [this.root];
+
+        while (list.length > 0) {
+            let curNode = list.shift();
+
+            callback(curNode.value);
+            if (curNode.left)
+                list.push(curNode.left);
+            if (curNode.right)
+                list.push(curNode.right);
+        }
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,

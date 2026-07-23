@@ -96,3 +96,16 @@ test("Delete non-exist item", () => {
     tree.deleteItem(13);
     expect(tree.toObject()).toEqual(treeObject);
 });
+
+test("levelOrderForEach method with a non-callback parameter", () => {
+    expect(() => tree.levelOrderForEach("callback")).toThrow(new RangeError("A callback is required"));
+});
+
+test("levelOrderForEach passes correct values", () => {
+    const visited = [];
+    const mockCallback = jest.fn((value) => visited.push(value));
+
+    tree.levelOrderForEach(mockCallback);
+
+    expect(visited).toEqual([1, 7, 4, 23, 3, 8, 9]);
+});
