@@ -192,6 +192,44 @@ class Tree {
         callback(node.value);
     }
 
+    height(value) {
+        if (!this.root)
+            return undefined;
+
+        let curNode = this.root;
+        let end = false;
+
+        while (curNode && !end) {
+            if (value < curNode.value)
+                curNode = curNode.left;
+            else if (value == curNode.value)
+                end = true;
+            else
+                curNode = curNode.right;
+        }
+
+        if (!curNode)
+            return undefined
+        let list = [curNode];
+        let height = [0];
+        let i = 0;
+
+        while (list.length > 0) {
+            curNode = list.shift();
+            if (curNode.left) {
+                height.push(height[i] + 1);
+                list.push(curNode.left);
+            }
+            if (curNode.right) {
+                height.push(height[i] + 1);
+                list.push(curNode.right);
+            }
+            i++;
+        }
+
+        return Math.max(...height);
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,

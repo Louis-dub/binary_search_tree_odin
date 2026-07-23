@@ -150,3 +150,16 @@ test("postOrderForEach passes correct values", () => {
 
     expect(visited).toEqual([3, 5, 4, 9, 8, 25, 23, 7, 1]);
 });
+
+test("Height with a non-tree", () => {
+    const newTree = new Tree([]);
+    expect(newTree.height(123)).toBe(undefined);
+});
+
+test("Height with a non-exist node", () => {
+    expect(tree.height(10)).toBe(undefined);
+});
+
+test("Height", () => {
+    expect(tree.height(7)).toBe(3);
+});
