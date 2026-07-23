@@ -164,17 +164,15 @@ class Tree {
 
         if (!this.root)
             return;
-        let list = [this.root];
+        this.recIn(callback, this.root);
+    }
 
-        while (list.length > 0) {
-            let curNode = list.shift();
-
-            callback(curNode.value);
-            if (curNode.left)
-                list.push(curNode.left);
-            if (curNode.right)
-                list.push(curNode.right);
-        }
+    recIn(callback, node) {
+        if (node.left)
+            this.recIn(callback, node.left);
+        callback(node.value);
+        if (node.right)
+            this.recIn(callback, node.right);
     }
 
     postOrderForEach(callback) {
@@ -183,17 +181,15 @@ class Tree {
 
         if (!this.root)
             return;
-        let list = [this.root];
+        this.recPost(callback, this.root);
+    }
 
-        while (list.length > 0) {
-            let curNode = list.shift();
-
-            callback(curNode.value);
-            if (curNode.left)
-                list.push(curNode.left);
-            if (curNode.right)
-                list.push(curNode.right);
-        }
+    recPost(callback, node) {
+        if (node.left)
+            this.recPost(callback, node.left);
+        if (node.right)
+            this.recPost(callback, node.right);
+        callback(node.value);
     }
 
     toObject() {
