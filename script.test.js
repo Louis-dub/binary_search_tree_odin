@@ -163,3 +163,17 @@ test("Height with a non-exist node", () => {
 test("Height", () => {
     expect(tree.height(7)).toBe(3);
 });
+
+test("Height with a non-tree", () => {
+    const newTree = new Tree([]);
+    expect(newTree.depth(123)).toBe(undefined);
+});
+
+test("Height with a non-exist node", () => {
+    expect(tree.depth(10)).toBe(undefined);
+});
+
+test("Height", () => {
+    expect(tree.depth(8)).toBe(3);
+});
+

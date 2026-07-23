@@ -230,6 +230,26 @@ class Tree {
         return Math.max(...height);
     }
 
+    depth(value) {
+        let curNode = this.root;
+        let end = false;
+        let d = 0;
+
+        while (curNode && !end) {
+            d++;
+            if (curNode.value > value)
+                curNode = curNode.left;
+            else if (curNode.value == value)
+                end = true;
+            else
+                curNode = curNode.right;
+        }
+
+        if (!curNode)
+            return undefined;
+        return d - 1;
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,
