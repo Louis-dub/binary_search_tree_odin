@@ -250,6 +250,28 @@ class Tree {
         return d - 1;
     }
 
+    isBalanced() {
+        if (!this.root || (!this.root.left && !this.root.right))
+            return true;
+
+        let list = [this.root];
+        let depths = [];
+
+        while (list.length > 0) {
+            let curNode = list.shift();
+
+            if (curNode.left)
+                list.push(curNode.left);
+            if (curNode.right)
+                list.push(curNode.right);
+            if (!curNode.left || !curNode.right)
+                depths.push(this.depth(curNode.value));
+        }
+        if ((depths.length === 1 && depths[0] != 1) || Math.max(...depths) - Math.min(...depths) > 1)
+            return false;
+        return true;
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,
