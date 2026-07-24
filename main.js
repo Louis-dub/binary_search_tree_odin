@@ -10,17 +10,44 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
 }
 
-const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
-tree.insert(25);
-tree.deleteItem(5);
-tree.deleteItem(67);
-tree.deleteItem(13);
-tree.insert(25);
+function createRandomTree() {
+    const nodes = [];
+
+    for (let i = 0; i < 12; i++) {
+        let num = Math.floor(Math.random() * 100);
+
+        while (nodes.includes(num))
+            num = Math.floor(Math.random() * 100);
+        nodes.push(num);
+    }
+    const tree = new Tree(nodes);
+    return tree;
+}
+
+const tree = createRandomTree();
+
 console.log("Tree:");
 prettyPrint(tree.root);
-tree.rebalance();
-console.log("Tree balance:")
+
+let listNode = [];
+tree.preOrderForEach((val) => listNode.push(val));
+console.log("\nPre Order: " + listNode.join(" - "));
+
+listNode = [];
+tree.inOrderForEach((val) => listNode.push(val));
+console.log("In Order: " + listNode.join(" - "));
+
+listNode = [];
+tree.postOrderForEach((val) => listNode.push(val));
+console.log("Post Order: " + listNode.join(" - "));
+
+tree.insert(97);
+tree.insert(16);
+tree.insert(3);
+console.log("\nTree:")
 prettyPrint(tree.root);
-// console.log("\nJSON:")
-// console.log(JSON.stringify(tree.toObject(), null, 2));
+
+console.log(`\nTree balanced: ${tree.isBalanced()}`);
+tree.rebalance();
+prettyPrint(tree.root);
