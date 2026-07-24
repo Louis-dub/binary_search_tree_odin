@@ -1,4 +1,4 @@
-# HashMap Project - The Odin Project
+# Binary Search Tree Project - The Odin Project
 This project is part of [The Odin Project](https://www.theodinproject.com) curriculum.
 This project is designed to introduce the Binary Search Tree (BST) in JavaScript.
 
