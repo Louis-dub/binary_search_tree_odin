@@ -272,6 +272,30 @@ class Tree {
         return true;
     }
 
+    rebalance() {
+        if (this.isBalanced())
+            return;
+        let list = [];
+
+        this.inOrderForEach((value) => list.push(value));
+        this.root = this.buildTree(this.balanceRec(list, []));
+    }
+
+    balanceRec(listOg, newList) {
+        const middle = listOg.length / 2;
+        let left = listOg.slice(0, middle);
+        let right = listOg.slice(middle);
+
+        newList.push(right.shift());
+        if (left.length > 1)
+            left = this.balanceRec(left, newList);
+        if (right.length > 1)
+            right = this.balanceRec(right, newList);
+        newList.push(...left);
+        newList.push(...right);
+        return newList;
+    }
+
     toObject() {
         let treeObject = {
             val: this.root.value,

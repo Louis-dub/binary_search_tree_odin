@@ -177,13 +177,17 @@ test("Height", () => {
     expect(tree.depth(8)).toBe(3);
 });
 
-test("isBalenced return true", () => {
+test("isBalanced return true", () => {
     const newTree = new Tree([8, 4, 2, 1, 3, 6, 5, 7, 12, 14, 13, 15, 10, 9, 11]);
     expect(newTree.isBalanced()).toBe(true);
 });
 
-test("isBalenced return false", () => {
+test("isBalanced return false", () => {
     tree.deleteItem(5);
     expect(tree.isBalanced()).toBe(false);
 });
 
+test("reBalance a tree", () => {
+    tree.rebalance();
+    expect(tree.isBalanced()).toBe(true);
+});

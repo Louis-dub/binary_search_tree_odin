@@ -19,6 +19,8 @@ tree.deleteItem(13);
 tree.insert(25);
 console.log("Tree:");
 prettyPrint(tree.root);
-// prettyPrint(new Tree([8, 4, 2, 1, 3, 6, 5, 7, 12, 14, 13, 15, 10, 9, 11]).root)
+tree.rebalance();
+console.log("Tree balance:")
+prettyPrint(tree.root);
 // console.log("\nJSON:")
 // console.log(JSON.stringify(tree.toObject(), null, 2));
